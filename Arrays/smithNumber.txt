@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<math.h>
+int isprime(int x){
+    for(int i=2;i<=sqrt(x);i++){
+        if(x%i==0){
+            return 0;
+        }
+    }
+    return 1;
+}
+int main(void){
+    int x;
+    scanf("%d",&x);
+    int prime[x],k=0;
+    if(isprime(x)){
+        printf("Not a smithNumber");
+        return 0;
+    }
+    for(int i=2;i<=sqrt(x);i++){
+        if(isprime(i)){
+            prime[k]=i;
+            k++;
+        }
+    }
+    /*for(int i=0;i<k;i++){
+        printf("%d ",prime[i]);
+    }*/
+    int temp=x,sum=0;
+    while(temp!=1){
+        for(int i=0;i<k;i++){
+            if(temp%prime[i]==0){
+                temp=temp/prime[i];
+                sum+=prime[i];
+            }
+        }
+    }
+    printf("%d",sum);
+    if(sum==x){
+        printf("Yes");
+    }
+    else{
+        printf("No");
+    }
+}
